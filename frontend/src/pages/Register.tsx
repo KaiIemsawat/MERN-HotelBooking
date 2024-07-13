@@ -9,7 +9,12 @@ type RegisterFromData = {
 };
 
 const Register = () => {
-  const { register, watch, handleSubmit } = useForm<RegisterFromData>();
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors }, // destructure 'formState' from 'useForm'. Then, destructure 'errors' from 'formState'
+  } = useForm<RegisterFromData>();
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -25,6 +30,9 @@ const Register = () => {
             className="w-full rounded border px-2 py-1 font-normal"
             {...register("firstName", { required: "This field is required" })}
           ></input>
+          {errors.firstName && (
+            <span className="text-red-500">{errors.firstName.message}</span>
+          )}
         </label>
         <label className="flex-1 text-sm font-bold text-gray-700">
           Last Name
@@ -32,6 +40,9 @@ const Register = () => {
             className="w-full rounded border px-2 py-1 font-normal"
             {...register("lastName", { required: "This field is required" })}
           ></input>
+          {errors.lastName && (
+            <span className="text-red-500">{errors.lastName.message}</span>
+          )}
         </label>
       </div>
       <label className="flex-1 text-sm font-bold text-gray-700">
@@ -41,6 +52,9 @@ const Register = () => {
           className="w-full rounded border px-2 py-1 font-normal"
           {...register("email", { required: "This field is required" })}
         ></input>
+        {errors.email && (
+          <span className="text-red-500">{errors.email.message}</span>
+        )}
       </label>
       <label className="flex-1 text-sm font-bold text-gray-700">
         Password
@@ -55,6 +69,9 @@ const Register = () => {
             },
           })}
         ></input>
+        {errors.password && (
+          <span className="text-red-500">{errors.password.message}</span>
+        )}
       </label>
       <label className="flex-1 text-sm font-bold text-gray-700">
         Confirm Password
@@ -71,6 +88,9 @@ const Register = () => {
             },
           })}
         ></input>
+        {errors.confirmPassword && (
+          <span className="text-red-500">{errors.confirmPassword.message}</span>
+        )}
       </label>
       <span>
         <button
