@@ -9,7 +9,7 @@ import authRoutes from "./routes/auth";
 mongoose.connect(process.env.MONGO_CONNECT as string);
 
 const app = express();
-let PORT = 3303;
+let PORT = process.env.PORT || 3301;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
