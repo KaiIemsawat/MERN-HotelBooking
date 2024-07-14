@@ -1,4 +1,5 @@
 import { RegisterFromData } from "./pages/Register";
+import { SignInFormData } from "./pages/SignIn";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // to use '.env' from frontend
 
 export const register = async (formData: RegisterFromData) => {
@@ -16,6 +17,25 @@ export const register = async (formData: RegisterFromData) => {
   if (!response.ok) {
     throw new Error(responseBody.message);
   }
+};
+
+export const signIn = async (formData: SignInFormData) => {
+  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  const body = await response.json();
+
+  if (!response.ok) {
+    throw new Error(body.message);
+  }
+
+  return body;
 };
 
 export const validateToken = async () => {
