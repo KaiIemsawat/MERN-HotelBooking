@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useQuery } from "react-query";
 
 import Toast from "../components/Toast";
-import * as apiClicent from "../api-client";
+import * as apiClient from "../api-client";
 
 type ToastMessage = {
   message: string;
@@ -23,7 +23,7 @@ export const AppContextProvider = ({
 }) => {
   const [toast, setToast] = useState<ToastMessage | undefined>();
 
-  const { isError } = useQuery("validateToken", apiClicent.validateToken, {
+  const { isError } = useQuery("validateToken", apiClient.validateToken, {
     retry: false,
   });
 
