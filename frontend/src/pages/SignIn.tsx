@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export type SignInFormData = {
   email: string;
@@ -24,7 +24,7 @@ const SignIn = () => {
   const mutation = useMutation(apiClient.signIn, {
     onSuccess: async () => {
       showToast({ message: "Sign in successful", type: "SUCCESS" });
-      await queryClient.invalidateQueries("validateToken");
+      await queryClient.invalidateQueries("validateToken ");
       navigate("/");
     },
     onError: (error: Error) => {
@@ -69,13 +69,19 @@ const SignIn = () => {
         )}
       </label>
 
-      <span>
+      <span className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
           className="rounded-lg bg-blue-600 p-2 px-3 py-1 text-xl font-bold text-white duration-300 hover:bg-blue-100 hover:text-blue-400 hover:shadow-lg"
         >
           Login
         </button>
+        <span className="text-sm">
+          Need an account?{" "}
+          <Link to="/register" className="font-semibold hover:underline">
+            Create an account here
+          </Link>
+        </span>
       </span>
     </form>
   );
