@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useAppContext } from "../contexts/AppContext";
 import SignOutButton from "./SignOutButton";
 
 const Header = () => {
   const { isLoggedIn } = useAppContext();
+  const location = useLocation();
+
+  let urlLocation: string = location.pathname;
+
+  console.log(location.pathname);
+
   return (
     <div className="bg-blue-800 py-6">
       <div
@@ -30,7 +36,7 @@ const Header = () => {
               </Link>
               <SignOutButton />
             </>
-          ) : (
+          ) : urlLocation === "/sign-in" ? null : (
             <Link
               to="/sign-in"
               className="flex items-center rounded-lg bg-blue-100 px-3 font-bold text-blue-400 duration-300 hover:bg-blue-600 hover:text-white hover:shadow-lg"

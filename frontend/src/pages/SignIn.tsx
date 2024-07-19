@@ -74,7 +74,7 @@ const SignIn = () => {
           type="submit"
           className="rounded-lg bg-blue-600 p-2 px-3 py-1 text-xl font-bold text-white duration-300 hover:bg-blue-100 hover:text-blue-400 hover:shadow-lg"
         >
-          Login
+          Sign In
         </button>
         <span className="text-sm">
           Need an account?{" "}
