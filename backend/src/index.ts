@@ -10,9 +10,9 @@ import authRoutes from "./routes/auth";
 mongoose.connect(process.env.MONGO_CONNECT as string);
 
 const app = express();
-app.use(cookieParser());
 let PORT = process.env.PORT || 3301;
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
